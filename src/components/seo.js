@@ -58,7 +58,7 @@ function SEO({ description, lang, meta, keywords, title, url, image }) {
               },
               {
                 name: `twitter:title`,
-                content: metaTitle,
+                content: 'The Appalachian Flag Co.',
               },
               {
                 name: `twitter:description`,

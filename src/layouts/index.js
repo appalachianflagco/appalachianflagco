@@ -5,6 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import StoreContext, { defaultStoreContext } from '../context/StoreContext'
 import Header from '../components/Header'
 import { GlobalStyle } from '../utils/styles'
+import Container from '../components/Container'
 
 class Layout extends React.Component {
   state = {
@@ -122,7 +123,7 @@ class Layout extends React.Component {
 
     return (
       <StoreContext.Provider value={this.state.store}>
-        <GlobalStyle/>
+        <GlobalStyle />
         <StaticQuery
           query={graphql`
             query SiteTitleQuery {
@@ -136,21 +137,14 @@ class Layout extends React.Component {
           render={data => (
             <>
               <Header siteTitle={data.site.siteMetadata.title} />
-              <div
-                style={{
-                  margin: `0 auto`,
-                  maxWidth: 960,
-                  padding: `0px 1.0875rem 1.45rem`,
-                  paddingTop: 0,
-                }}
-              >
+              <Container flexDirection="column">
                 {children}
                 <footer>
                   © {new Date().getFullYear()}, Built with
                   {` `}
                   <a href="https://www.gatsbyjs.org">Gatsby</a>
                 </footer>
-              </div>
+              </Container>
             </>
           )}
         />

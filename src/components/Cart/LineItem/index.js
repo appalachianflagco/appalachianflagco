@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Flex, Box } from '@rebass/grid/emotion'
+import { Flex, Box } from 'rebass'
 
 import StoreContext from '../../../context/StoreContext'
 
@@ -16,9 +16,11 @@ const LineItem = props => {
   ) : null
 
   const selectedOptions = line_item.variant.selectedOptions ? (
-    <>{line_item.variant.selectedOptions.map(option => {
-      return `${option.name}: ${option.value} `
-    })}</>
+    <>
+      {line_item.variant.selectedOptions.map(option => {
+        return `${option.name}: ${option.value} `
+      })}
+    </>
   ) : null
 
   const handleRemove = () => {
@@ -28,23 +30,21 @@ const LineItem = props => {
   return (
     <Flex
       py={2}
-      flexWrap='wrap'
-      justifyContent='space-between'
-      alignItems='center'
+      flexWrap="wrap"
+      justifyContent="space-between"
+      alignItems="center"
     >
-      <Box>
-        {variantImage}
-      </Box>
+      <Box>{variantImage}</Box>
       <Box>
         <p>
           {line_item.title}
           {`  `}
-          {line_item.variant.title === ! 'Default Title' ? line_item.variant.title : ''}
+          {line_item.variant.title === !'Default Title'
+            ? line_item.variant.title
+            : ''}
         </p>
       </Box>
-      <Box>
-        {selectedOptions}
-      </Box>
+      <Box>{selectedOptions}</Box>
       <Box>
         {line_item.quantity}
         {console.log(line_item)}
