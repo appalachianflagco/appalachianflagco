@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 import { maxWidth } from 'styled-system'
-import { Flex } from '@rebass/grid/emotion'
+import { Flex } from 'rebass'
 
 const Container = styled(Flex)(maxWidth)
 

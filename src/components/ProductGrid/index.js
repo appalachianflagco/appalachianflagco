@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import { Flex, Box } from '@rebass/grid/emotion'
+import { Flex, Box } from 'rebass'
 import { Img } from '../../utils/styles'
 
 const ProductGrid = () => {

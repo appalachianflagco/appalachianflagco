@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
-import { Box } from '@rebass/grid/emotion'
+import styled from 'styled-components'
+import { Box } from 'rebass'
 import Container from '../Container'
 
 import StoreContext from '../../context/StoreContext'

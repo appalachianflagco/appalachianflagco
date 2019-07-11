@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-
+import { Heading } from 'rebass'
 import SEO from '../components/seo'
 import ProductGrid from '../components/ProductGrid'
 
