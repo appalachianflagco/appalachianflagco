@@ -3,28 +3,38 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, keywords, title, url, image }) {
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
         const metaDescription =
           description || data.site.siteMetadata.description
+        const metaTitle = title || data.site.siteMetadata.title
+        const metaUrl = url || data.site.siteMetadata.url
         return (
           <Helmet
             htmlAttributes={{
               lang,
             }}
-            title={title}
-            titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+            title={metaTitle}
+            titleTemplate={`%s | The Appalachian Flag Co.`}
             meta={[
               {
                 name: `description`,
                 content: metaDescription,
               },
               {
+                property: `og:url`,
+                content: metaUrl,
+              },
+              {
                 property: `og:title`,
-                content: title,
+                content: metaTitle,
+              },
+              {
+                property: `og:image`,
+                content: image || '/flag.png',
               },
               {
                 property: `og:description`,
@@ -33,6 +43,10 @@ function SEO({ description, lang, meta, keywords, title }) {
               {
                 property: `og:type`,
                 content: `website`,
+              },
+              {
+                property: `fb:app_id`,
+                content: `654686484698867`,
               },
               {
                 name: `twitter:card`,
@@ -44,7 +58,7 @@ function SEO({ description, lang, meta, keywords, title }) {
               },
               {
                 name: `twitter:title`,
-                content: title,
+                content: metaTitle,
               },
               {
                 name: `twitter:description`,
@@ -71,6 +85,7 @@ SEO.defaultProps = {
   lang: `en`,
   meta: [],
   keywords: [],
+  url: 'http://appalachianflagco.com',
 }
 
 SEO.propTypes = {
@@ -78,7 +93,9 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
+  image: PropTypes.string,
   title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 }
 
 export default SEO
@@ -90,6 +107,8 @@ const detailsQuery = graphql`
         title
         description
         author
+        keywords
+        url
       }
     }
   }

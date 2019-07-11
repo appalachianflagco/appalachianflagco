@@ -1,11 +1,23 @@
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`
+  path: `.env.${process.env.NODE_ENV}`,
 })
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Shopify Starter`,
-    description: `Kick off your next, ecommerce experience with this Gatsby starter. This starter ships with credentials to a shopify demo store so you can try it out immediately.`,
-    author: `@alexanderhorl`,
+    title: `The Appalachian Flag Co. | A Flag for Appalachia`,
+    description: `The Appalachian Flag Company. Bringing you the definitive symbol for Appalachia since 2015.`,
+    author: `The Appalachian Flag Co.`,
+    url: 'http://appalachianflagco.com',
+    keywords: [
+      'appalachia',
+      'flag',
+      'appalachian flag',
+      'company',
+      'bear',
+      'southern',
+      'design',
+      'heritage',
+      'history',
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -28,7 +40,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     {
@@ -57,9 +69,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-134421805-1",
+        trackingId: 'UA-76963473-2',
         anonymize: true,
         respectDNT: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-facebook-pixel`,
+      options: {
+        pixelId: '1717192025170049',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
