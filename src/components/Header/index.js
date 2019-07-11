@@ -8,7 +8,7 @@ import Container from '../Container'
 import StoreContext from '../../context/StoreContext'
 
 const Wrapper = styled.div({
-  background: `rebeccapurple`,
+  background: `rgba(89, 165, 198)`,
   marginBottom: `1.45rem`,
 })
 
