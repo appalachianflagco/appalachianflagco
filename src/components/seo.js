@@ -10,13 +10,15 @@ function SEO({ description, lang, meta, keywords, title, url, image }) {
       render={data => {
         const metaDescription =
           description || data.site.siteMetadata.description
+        const metaTitle = title || data.site.siteMetadata.title
+        const metaUrl = url || data.site.siteMetadata.url
         return (
           <Helmet
             htmlAttributes={{
               lang,
             }}
-            title={title}
-            titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+            title={metaTitle}
+            titleTemplate={`%s | The Appalachian Flag Co.`}
             meta={[
               {
                 name: `description`,
@@ -24,11 +26,11 @@ function SEO({ description, lang, meta, keywords, title, url, image }) {
               },
               {
                 property: `og:url`,
-                content: url || data.site.siteMetadata.url,
+                content: metaUrl,
               },
               {
                 property: `og:title`,
-                content: 'The Appalachian Flag Co. | A Flag for Appalachia',
+                content: metaTitle,
               },
               {
                 property: `og:image`,
@@ -56,7 +58,7 @@ function SEO({ description, lang, meta, keywords, title, url, image }) {
               },
               {
                 name: `twitter:title`,
-                content: title,
+                content: metaTitle,
               },
               {
                 name: `twitter:description`,

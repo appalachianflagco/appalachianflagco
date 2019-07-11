@@ -3,7 +3,7 @@ require('dotenv').config({
 })
 module.exports = {
   siteMetadata: {
-    title: `The Appalachian Flag Co.`,
+    title: `The Appalachian Flag Co. | A Flag for Appalachia`,
     description: `The Appalachian Flag Company. Bringing you the definitive symbol for Appalachia since 2015.`,
     author: `The Appalachian Flag Co.`,
     url: 'http://appalachianflagco.com',
@@ -72,6 +72,12 @@ module.exports = {
         trackingId: 'UA-76963473-2',
         anonymize: true,
         respectDNT: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-facebook-pixel`,
+      options: {
+        pixelId: '1717192025170049',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
