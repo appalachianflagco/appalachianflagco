@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, keywords, title, url, image }) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -23,8 +23,16 @@ function SEO({ description, lang, meta, keywords, title }) {
                 content: metaDescription,
               },
               {
+                property: `og:url`,
+                content: url || data.site.siteMetadata.url,
+              },
+              {
                 property: `og:title`,
-                content: title,
+                content: 'The Appalachian Flag Co. | A Flag for Appalachia',
+              },
+              {
+                property: `og:image`,
+                content: image || '/flag.png',
               },
               {
                 property: `og:description`,
@@ -33,6 +41,10 @@ function SEO({ description, lang, meta, keywords, title }) {
               {
                 property: `og:type`,
                 content: `website`,
+              },
+              {
+                property: `fb:app_id`,
+                content: `654686484698867`,
               },
               {
                 name: `twitter:card`,
@@ -71,6 +83,7 @@ SEO.defaultProps = {
   lang: `en`,
   meta: [],
   keywords: [],
+  url: 'http://appalachianflagco.com',
 }
 
 SEO.propTypes = {
@@ -78,7 +91,9 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
+  image: PropTypes.string,
   title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 }
 
 export default SEO
@@ -90,6 +105,8 @@ const detailsQuery = graphql`
         title
         description
         author
+        keywords
+        url
       }
     }
   }
