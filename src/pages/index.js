@@ -3,12 +3,12 @@ import { Link } from 'gatsby'
 import { Heading, Text } from 'rebass'
 import SEO from '../components/seo'
 import ProductGrid from '../components/ProductGrid'
-import Logo from '../components/AnimatedLogo'
+// import Logo from '../components/AnimatedLogo'
 
 const IndexPage = () => (
   <>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <Logo></Logo>
+    {/* <Logo></Logo> */}
     <Heading as="h1">Appalachian Flag Co.</Heading>
     <Heading as="h2">About</Heading>
     <Heading as="h3">Origin</Heading>
