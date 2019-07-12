@@ -11,7 +11,7 @@ const IndexPage = () => (
     <Title level={1}>Appalachian Flag Co.</Title>
     <Title level={3}>Products</Title>
     <ProductGrid />
-    <Row type="flex" justify="center" align="center">
+    <Row type="flex" justify="center" align="middle">
       <Col span={24}>
         <Title level={2}>About</Title>
       </Col>
@@ -56,8 +56,8 @@ const IndexPage = () => (
           width="100%"
           height="auto"
           src="https://www.youtube.com/embed/F9Gbq3hRsJc?&amp;showinfo=0&amp;rel=0"
-          frameborder="0"
-          allowfullscreen=""
+          frameBorder="0"
+          allowFullScreen=""
         ></iframe>
       </Col>
     </Row>

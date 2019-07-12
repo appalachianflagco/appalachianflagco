@@ -15,6 +15,16 @@ export const GlobalStyle = props => (
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
       }
+
+      .ant-carousel .slick-dots li button {
+        height: 16px;
+        background: black;
+        border-radius: 25%;
+      }
+
+      .ant-carousel .slick-dots li.slick-active button {
+        background: blue;
+      }
     `}
   />
 )
