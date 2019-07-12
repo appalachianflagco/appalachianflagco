@@ -66,7 +66,7 @@ const Header = ({ siteTitle }) => {
     <Wrapper>
       <Container>
         <Box>
-          <H1 to="/">{siteTitle}</H1>
+          <H1 to="/">The Appalachian Flag Co.</H1>
         </Box>
         <Box ml="auto">
           <H1 to="/cart">

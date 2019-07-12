@@ -3,10 +3,12 @@ import { Link } from 'gatsby'
 import { Heading, Text } from 'rebass'
 import SEO from '../components/seo'
 import ProductGrid from '../components/ProductGrid'
+import Logo from '../components/AnimatedLogo'
 
 const IndexPage = () => (
   <>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <Logo></Logo>
     <Heading as="h1">Appalachian Flag Co.</Heading>
     <Heading as="h2">About</Heading>
     <Heading as="h3">Origin</Heading>
@@ -41,8 +43,8 @@ const IndexPage = () => (
       width="100%"
       height="auto"
       src="https://www.youtube.com/embed/F9Gbq3hRsJc?&amp;showinfo=0&amp;rel=0"
-      frameborder="0"
-      allowfullscreen=""
+      frameBorder="0"
+      allowFullScreen=""
     ></iframe>
     <Heading as="h3">Products</Heading>
     <ProductGrid />

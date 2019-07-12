@@ -2,7 +2,6 @@ import React from 'react'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
 import { Global, css } from '@emotion/core'
-import { Flex } from 'rebass'
 
 export const GlobalStyle = props => (
   <Global
@@ -11,10 +10,20 @@ export const GlobalStyle = props => (
       body {
         margin: 0;
       }
+
       html {
         font-family: sans-serif;
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: serif;
       }
     `}
   />
@@ -31,17 +40,3 @@ export const Img = styled(Image)`
   padding-top: 0;
   margin-bottom: 1.45rem;
 `
-
-export const Container = props => (
-  <Flex
-    {...props}
-    mx="auto"
-    flexDirection="column"
-    px={[`1.0875rem`, null, null, 0]}
-    py="1.45rem"
-    css={{
-      margin: `0 auto`,
-      maxWidth: 960,
-    }}
-  />
-)

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Cart from '../components/Cart'
-import { Container } from '../utils/styles'
+import Container from '../components/Container'
 
 const CartPage = () => (
   <Container>
