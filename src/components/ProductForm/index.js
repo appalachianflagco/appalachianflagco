@@ -1,8 +1,21 @@
 import React, { useState, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import StoreContext from '../../context/StoreContext'
 import VariantSelector from './VariantSelector'
-import { Button, Input } from 'antd'
+import { Button, Input, Typography, Form, Icon } from 'antd'
+
+const { Title, Text } = Typography
+
+const BuyButton = styled(Button)`
+  background-color: green !important;
+  color: white !important;
+
+  &:focus,
+  &:hover {
+    border-color: green !important;
+  }
+`
 
 const ProductForm = props => {
   const [quantity, setQuantity] = useState(1)
@@ -41,14 +54,13 @@ const ProductForm = props => {
     setQuantity(event.target.value)
   }
 
-  const handleOptionChange = event => {
-    const { target } = event
+  const handleOptionChange = (name, value) => {
     setVariant(prevState => ({
       ...prevState,
-      [target.name]: target.value,
+      [name]: value,
     }))
 
-    props.setActiveColor(target.value)
+    props.setActiveColor(value)
   }
 
   const handleAddToCart = () => {
@@ -58,34 +70,54 @@ const ProductForm = props => {
   const variantSelectors = hasVariants
     ? props.product.options.map(option => {
         return (
-          <VariantSelector
-            onChange={handleOptionChange}
-            key={option.id.toString()}
-            option={option}
-          />
+          <Form.Item label={option.name}>
+            <VariantSelector
+              onChange={handleOptionChange}
+              key={option.id.toString()}
+              option={option}
+            />
+          </Form.Item>
         )
       })
     : null
 
   return (
     <>
-      <h3>${productVariant.price}</h3>
-      {variantSelectors}
-      <label htmlFor="quantity">Quantity </label>
-      <Input
-        type="number"
-        id="quantity"
-        name="quantity"
-        min="1"
-        step="1"
-        onChange={handleQuantityChange}
-        value={quantity}
-      />
-      <br />
-      <Button type="submit" disabled={!available} onClick={handleAddToCart}>
-        Add to Cart
-      </Button>
-      {!available && <p>This Product is out of Stock!</p>}
+      <Title level={4}>${productVariant.price}</Title>
+      <Form
+        layout="horizontal"
+        labelCol={{ xs: { span: 24 }, sm: { span: 4 } }}
+        wrapperCol={{ xs: { span: 12 }, sm: { span: 4 } }}
+        labelAlign="left"
+      >
+        {variantSelectors}
+        <Form.Item label="Quantity">
+          <Input
+            type="number"
+            id="quantity"
+            name="quantity"
+            min="1"
+            step="1"
+            onChange={handleQuantityChange}
+            value={quantity}
+          />
+        </Form.Item>
+        <Form.Item>
+          <BuyButton
+            htmlType="submit"
+            disabled={!available}
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </BuyButton>
+        </Form.Item>
+        {!available && (
+          <Text type="danger">
+            <Icon type="exclamation-circle" theme="filled" />
+            This Product is out of Stock!
+          </Text>
+        )}
+      </Form>
     </>
   )
 }

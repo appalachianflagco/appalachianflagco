@@ -12,6 +12,7 @@ const { Footer, Content } = ALayout
 
 const StyledContent = styled(Content)`
   padding: 50px;
+  min-height: 100vh;
 `
 
 class Layout extends React.Component {

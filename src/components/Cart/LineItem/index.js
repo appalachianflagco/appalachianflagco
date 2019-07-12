@@ -1,5 +1,9 @@
 import React, { useContext } from 'react'
+import { Row, Col, Typography, Button, Icon } from 'antd'
+
 import StoreContext from '../../../context/StoreContext'
+
+const { Text, Title } = Typography
 
 const LineItem = props => {
   const context = useContext(StoreContext)
@@ -9,14 +13,20 @@ const LineItem = props => {
     <img
       src={line_item.variant.image.src}
       alt={`${line_item.title} product shot`}
-      height="60px"
+      className="cart-thumb"
     />
   ) : null
 
   const selectedOptions = line_item.variant.selectedOptions ? (
     <>
       {line_item.variant.selectedOptions.map(option => {
-        return `${option.name}: ${option.value} `
+        return (
+          <>
+            <Text>{option.name}: </Text>
+            <Text>{option.value}</Text>
+            <br />
+          </>
+        )
       })}
     </>
   ) : null
@@ -24,25 +34,28 @@ const LineItem = props => {
   const handleRemove = () => {
     context.removeLineItem(context.client, context.checkout.id, line_item.id)
   }
+  console.log(line_item)
 
   return (
-    <>
-      <div>{variantImage}</div>
-      <div>
-        <p>
-          {line_item.title}
-          {`  `}
-          {line_item.variant.title === !'Default Title'
-            ? line_item.variant.title
-            : ''}
-        </p>
-      </div>
-      <div>{selectedOptions}</div>
+    <Row gutter={16}>
+      <Col span={4}>
+        <div>{variantImage}</div>
+      </Col>
+      <Col span={16}>
+        <Title level={4}>{line_item.title}</Title>
 
-      {line_item.quantity}
+        <div>
+          {line_item.variant.title !== 'Default Title' && selectedOptions}
+        </div>
 
-      <button onClick={handleRemove}>Remove</button>
-    </>
+        <Text>Quantity: </Text>
+        <Text>{line_item.quantity}</Text>
+        <br />
+        <Button onClick={handleRemove}>
+          Remove <Icon type="delete" />
+        </Button>
+      </Col>
+    </Row>
   )
 }
 

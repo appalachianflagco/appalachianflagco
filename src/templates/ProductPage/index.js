@@ -2,7 +2,9 @@ import React, { useState, useRef } from 'react'
 import { graphql } from 'gatsby'
 import ProductForm from '../../components/ProductForm'
 import { Img } from '../../utils/styles'
-import { Carousel, Row, Col, Card } from 'antd'
+import { Carousel, Row, Col, Card, Typography } from 'antd'
+
+const { Title, Text } = Typography
 
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
@@ -13,14 +15,14 @@ const ProductPage = ({ data }) => {
   })
 
   if (matchingColorSlideIndex > -1) {
-    carouselRef.current.goTo(matchingColorSlideIndex)
+    carouselRef.current && carouselRef.current.goTo(matchingColorSlideIndex)
   }
 
   return (
     <>
       <Row gutter={16}>
         <Col span={8}>
-          <Carousel dotPosition="bottom" ref={carouselRef}>
+          <Carousel dots="false" ref={carouselRef}>
             {product.images.map(x => {
               return (
                 <Img
@@ -35,10 +37,13 @@ const ProductPage = ({ data }) => {
         </Col>
         <Col span={16}>
           <Card>
-            <h1>{product.title}</h1>
-            <div
-              dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-            />
+            <Title>{product.title}</Title>
+            <Text>
+              <div
+                dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+              />
+            </Text>
+
             <ProductForm product={product} setActiveColor={setActiveColor} />
           </Card>
         </Col>

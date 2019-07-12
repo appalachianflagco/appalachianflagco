@@ -9,21 +9,18 @@ export const GlobalStyle = props => (
     styles={css`
       body {
         margin: 0;
+        min-height: 100%;
       }
       html {
         font-family: sans-serif;
+        overflow-y: scroll;
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
       }
 
-      .ant-carousel .slick-dots li button {
-        height: 16px;
-        background: black;
-        border-radius: 25%;
-      }
-
-      .ant-carousel .slick-dots li.slick-active button {
-        background: blue;
+      .cart-thumb {
+        width: 100%;
+        height: auto;
       }
     `}
   />

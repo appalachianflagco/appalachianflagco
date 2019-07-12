@@ -1,10 +1,12 @@
 import React from 'react'
+import { Typography } from 'antd'
 
 import Cart from '../components/Cart'
 
+const { Title } = Typography
 const CartPage = () => (
   <>
-    <h1>Cart</h1>
+    <Title>Cart</Title>
     <Cart />
   </>
 )
