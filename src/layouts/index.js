@@ -1,11 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-
+import styled from 'styled-components'
 import StoreContext, { defaultStoreContext } from '../context/StoreContext'
 import Header from '../components/Header'
 import { GlobalStyle } from '../utils/styles'
-import Container from '../components/Container'
+import { Layout as ALayout, Card } from 'antd'
+import 'antd/dist/antd.css'
+
+const { Footer, Content } = ALayout
+
+const StyledContent = styled(Content)`
+  padding: 50px;
+`
 
 class Layout extends React.Component {
   state = {
@@ -135,17 +142,18 @@ class Layout extends React.Component {
             }
           `}
           render={data => (
-            <>
+            <ALayout>
               <Header siteTitle={data.site.siteMetadata.title} />
-              <Container flexDirection="column">
-                {children}
-                <footer>
-                  © {new Date().getFullYear()}, Built with
-                  {` `}
-                  <a href="https://www.gatsbyjs.org">Gatsby</a>
-                </footer>
-              </Container>
-            </>
+              <StyledContent>
+                <Card>{children}</Card>
+              </StyledContent>
+
+              <Footer>
+                © {new Date().getFullYear()}, Built with
+                {` `}
+                <a href="https://www.gatsbyjs.org">Gatsby</a>
+              </Footer>
+            </ALayout>
           )}
         />
       </StoreContext.Provider>

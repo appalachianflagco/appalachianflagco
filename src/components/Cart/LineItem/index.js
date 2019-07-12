@@ -1,6 +1,4 @@
 import React, { useContext } from 'react'
-import { Flex, Box } from 'rebass'
-
 import StoreContext from '../../../context/StoreContext'
 
 const LineItem = props => {
@@ -28,14 +26,9 @@ const LineItem = props => {
   }
 
   return (
-    <Flex
-      py={2}
-      flexWrap="wrap"
-      justifyContent="space-between"
-      alignItems="center"
-    >
-      <Box>{variantImage}</Box>
-      <Box>
+    <>
+      <div>{variantImage}</div>
+      <div>
         <p>
           {line_item.title}
           {`  `}
@@ -43,16 +36,13 @@ const LineItem = props => {
             ? line_item.variant.title
             : ''}
         </p>
-      </Box>
-      <Box>{selectedOptions}</Box>
-      <Box>
-        {line_item.quantity}
-        {console.log(line_item)}
-      </Box>
-      <Box>
-        <button onClick={handleRemove}>Remove</button>
-      </Box>
-    </Flex>
+      </div>
+      <div>{selectedOptions}</div>
+
+      {line_item.quantity}
+
+      <button onClick={handleRemove}>Remove</button>
+    </>
   )
 }
 

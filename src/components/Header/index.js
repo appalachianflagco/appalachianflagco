@@ -2,44 +2,16 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Box } from 'rebass'
-import Container from '../Container'
-
+import { Layout, Row, Col, Typography, Badge, Icon } from 'antd'
 import StoreContext from '../../context/StoreContext'
 
-const Wrapper = styled.div({
-  background: `rgba(89, 165, 198)`,
-  marginBottom: `1.45rem`,
-})
+const { Header } = Layout
+const { Title } = Typography
 
-const CartCounter = styled.span({
-  backgroundColor: `white`,
-  color: `#663399`,
-  borderRadius: `20px`,
-  padding: `0 10px`,
-  fontSize: `1.2rem`,
-  float: `right`,
-  margin: `-10px`,
-  zIndex: 999,
-})
-
-const H1 = props => (
-  <h1
-    style={{
-      margin: 0,
-    }}
-  >
-    <Link
-      {...props}
-      style={{
-        color: `white`,
-        textDecoration: `none`,
-      }}
-    >
-      {props.children}
-    </Link>
-  </h1>
-)
+const CartButton = styled(Link)`
+  color: white;
+  text-decoration: none;
+`
 
 const countQuantity = lineItems => {
   let quantity = 0
@@ -51,7 +23,7 @@ const countQuantity = lineItems => {
   return quantity
 }
 
-const Header = ({ siteTitle }) => {
+const Nav = ({ siteTitle }) => {
   const context = useContext(StoreContext)
   const { checkout } = context
   const [quantity, setQuantity] = useState(
@@ -63,28 +35,37 @@ const Header = ({ siteTitle }) => {
   }, [checkout])
 
   return (
-    <Wrapper>
-      <Container>
-        <Box>
-          <H1 to="/">{siteTitle}</H1>
-        </Box>
-        <Box ml="auto">
-          <H1 to="/cart">
-            {quantity !== 0 && <CartCounter>{quantity}</CartCounter>}
+    <Header>
+      <Row type="flex" justify="center">
+        <Col span={18}>
+          <Link
+            to="/"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+            }}
+          >
+            {siteTitle}
+          </Link>
+        </Col>
+        <Col span={6}>
+          <CartButton to="/cart">
             Cart
-          </H1>
-        </Box>
-      </Container>
-    </Wrapper>
+            <Icon type="shopping-cart" />
+            {quantity !== 0 && <Badge count={quantity} />}
+          </CartButton>
+        </Col>
+      </Row>
+    </Header>
   )
 }
 
-Header.propTypes = {
+Nav.propTypes = {
   siteTitle: PropTypes.string,
 }
 
-Header.defaultProps = {
+Nav.defaultProps = {
   siteTitle: ``,
 }
 
-export default Header
+export default Nav
