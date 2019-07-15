@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import { Img } from '../../utils/styles'
-import { Row, Col, Card } from 'antd'
+import { Row, Col } from 'antd'
 
 const ProductGrid = () => {
   const data = useStaticQuery(
@@ -36,18 +36,16 @@ const ProductGrid = () => {
   )
 
   return (
-    <Row gutter={16}>
+    <Row gutter={64}>
       {data.allShopifyProduct.edges.map(x => (
-        <Col span={8}>
-          <Card>
-            <Link to={`/product/${x.node.handle}/`}>
-              <Img
-                fluid={x.node.images[0].localFile.childImageSharp.fluid}
-                alt={x.node.handle}
-              />
-            </Link>
-            <p>{x.node.title}</p>
-          </Card>
+        <Col span={8} key={x.node.id}>
+          <Link to={`/product/${x.node.handle}/`}>
+            <Img
+              fluid={x.node.images[0].localFile.childImageSharp.fluid}
+              alt={x.node.handle}
+            />
+          </Link>
+          <p>{x.node.title}</p>
         </Col>
       ))}
     </Row>

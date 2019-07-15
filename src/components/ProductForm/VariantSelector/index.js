@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Select, Form } from 'antd'
+import { Select } from 'antd'
 const VariantSelector = props => {
   const { option } = props
   return (

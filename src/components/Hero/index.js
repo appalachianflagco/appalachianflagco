@@ -4,12 +4,12 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 import SplitText from 'react-pose-text'
 
-const charPoses = {
-  exit: { opacity: 0, y: 20 },
+const wordPoses = {
+  exit: { opacity: 0, y: 100 },
   enter: {
     opacity: 1,
     y: 0,
-    delay: ({ charIndex }) => charIndex * 30,
+    delay: ({ wordIndex }) => wordIndex * 300,
   },
 }
 
@@ -81,22 +81,22 @@ const Hero = props => {
         <HeroContainer>
           <SplitTextContainer>
             <SecondaryText>
-              <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
+              <SplitText initialPose="exit" pose="enter" wordPoses={wordPoses}>
                 - The -
               </SplitText>
             </SecondaryText>
             <MainText>
-              <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
+              <SplitText initialPose="exit" pose="enter" wordPoses={wordPoses}>
                 Appalachian
               </SplitText>
             </MainText>
             <MainText>
-              <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
+              <SplitText initialPose="exit" pose="enter" wordPoses={wordPoses}>
                 Flag Company
               </SplitText>
             </MainText>
             <SecondaryText>
-              <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
+              <SplitText initialPose="exit" pose="enter" wordPoses={wordPoses}>
                 - est. 2015 -
               </SplitText>
             </SecondaryText>

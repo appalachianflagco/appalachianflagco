@@ -5,14 +5,17 @@ import styled from 'styled-components'
 import StoreContext, { defaultStoreContext } from '../context/StoreContext'
 import Header from '../components/Header'
 import { GlobalStyle } from '../utils/styles'
-import { Layout as ALayout, Card } from 'antd'
+import { Layout as ALayout } from 'antd'
 import Hero from '../components/Hero'
+import Footer from '../components/Footer'
 import 'antd/dist/antd.css'
 
-const { Footer, Content } = ALayout
+const { Content } = ALayout
 
 const StyledContent = styled(Content)`
   padding: 50px;
+  max-width: 1240px;
+  margin: 0 auto;
 `
 
 class Layout extends React.Component {
@@ -146,9 +149,7 @@ class Layout extends React.Component {
             <ALayout>
               <Header siteTitle={data.site.siteMetadata.title} />
               <Hero></Hero>
-              <StyledContent>
-                <Card>{children}</Card>
-              </StyledContent>
+              <StyledContent>{children}</StyledContent>
 
               <Footer>
                 © {new Date().getFullYear()}, Built with

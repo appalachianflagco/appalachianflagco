@@ -53,7 +53,7 @@ const Nav = ({ siteTitle }) => {
   }, [checkout])
 
   return (
-    <StyledHeader scrollY={scrollY}>
+    <StyledHeader scrolly={scrollY}>
       <Row type="flex" justify="center">
         <Col span={18}>
           <Link

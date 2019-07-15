@@ -11,7 +11,7 @@ const ProductPage = ({ data }) => {
   const carouselRef = useRef(null)
   const [activeColor, setActiveColor] = useState()
   const matchingColorSlideIndex = product.images.findIndex(element => {
-    return element.altText == activeColor
+    return element.altText === activeColor
   })
 
   if (matchingColorSlideIndex > -1) {
