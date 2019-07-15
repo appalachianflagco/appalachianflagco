@@ -4,6 +4,7 @@ import { Typography, Row, Col } from 'antd'
 
 import SEO from '../components/seo'
 import ProductGrid from '../components/ProductGrid'
+
 const { Title, Text } = Typography
 const IndexPage = () => (
   <>

@@ -28,6 +28,8 @@ export const GlobalStyle = props => (
 
 export const Img = styled(Image)`
   max-width: 100%;
+  width: 100%;
+  height: 100%;
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;

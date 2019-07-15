@@ -45,6 +45,16 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `prata`,
+          `work sans\:300,400,700`, // you can also specify font weights and styles
+        ],
+        display: 'swap',
+      },
+    },
+    {
       resolve: `gatsby-source-shopify2`,
       options: {
         // The domain name of your Shopify shop. This is required.
