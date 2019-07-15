@@ -6,6 +6,8 @@ import { Layout, Row, Col, Typography, Badge, Icon, Button } from 'antd'
 import StoreContext from '../../context/StoreContext'
 import { useScrollPosition } from '../../utils/hooks'
 
+import Container from '../Container'
+
 const { Header } = Layout
 const { Title } = Typography
 
@@ -54,30 +56,32 @@ const Nav = ({ siteTitle }) => {
 
   return (
     <StyledHeader scrolly={scrollY}>
-      <Row type="flex" justify="center">
-        <Col span={18}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-              fontFamily: 'work sans',
-              textShadow: '5px 5px 15px #000',
-            }}
-          >
-            {siteTitle}
-          </Link>
-        </Col>
-        <Col span={6}>
-          <CartButton to="/cart">
-            <Button>
-              Cart
-              <Icon type="shopping-cart" />
-              {quantity !== 0 && <Badge count={quantity} />}
-            </Button>
-          </CartButton>
-        </Col>
-      </Row>
+      <Container>
+        <Row type="flex" justify="center">
+          <Col span={18}>
+            <Link
+              to="/"
+              style={{
+                color: `white`,
+                textDecoration: `none`,
+                fontFamily: 'work sans',
+                textShadow: '5px 5px 15px #000',
+              }}
+            >
+              {siteTitle}
+            </Link>
+          </Col>
+          <Col span={6}>
+            <CartButton to="/cart">
+              <Button>
+                Cart
+                <Icon type="shopping-cart" />
+                {quantity !== 0 && <Badge count={quantity} />}
+              </Button>
+            </CartButton>
+          </Col>
+        </Row>
+      </Container>
     </StyledHeader>
   )
 }

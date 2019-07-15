@@ -6,17 +6,10 @@ import StoreContext, { defaultStoreContext } from '../context/StoreContext'
 import Header from '../components/Header'
 import { GlobalStyle } from '../utils/styles'
 import { Layout as ALayout } from 'antd'
-import Hero from '../components/Hero'
 import Footer from '../components/Footer'
 import 'antd/dist/antd.css'
 
 const { Content } = ALayout
-
-const StyledContent = styled(Content)`
-  padding: 50px;
-  max-width: 1240px;
-  margin: 0 auto;
-`
 
 class Layout extends React.Component {
   state = {
@@ -148,14 +141,9 @@ class Layout extends React.Component {
           render={data => (
             <ALayout>
               <Header siteTitle={data.site.siteMetadata.title} />
-              <Hero></Hero>
-              <StyledContent>{children}</StyledContent>
+              <Content>{children}</Content>
 
-              <Footer>
-                © {new Date().getFullYear()}, Built with
-                {` `}
-                <a href="https://www.gatsbyjs.org">Gatsby</a>
-              </Footer>
+              <Footer></Footer>
             </ALayout>
           )}
         />

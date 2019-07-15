@@ -50,7 +50,12 @@ const HeroContainer = styled.div`
 const Triangle = styled.div`
   position: absolute;
   display: inline-block;
-  background: #212531;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(33, 35, 81, 1) 35%,
+    rgba(33, 35, 81, 1) 100%
+  );
   width: 200vw;
   height: 200vh;
   transform: rotate(-45deg) translateY(-50%) translateX(45%);
@@ -101,6 +106,7 @@ const Hero = props => {
               </SplitText>
             </SecondaryText>
           </SplitTextContainer>
+
           <FluidImage fluid={data.allImageSharp.edges[0].node.fluid} />
           <Triangle />
         </HeroContainer>
