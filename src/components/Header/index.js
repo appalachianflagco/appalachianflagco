@@ -4,9 +4,22 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Layout, Row, Col, Typography, Badge, Icon, Button } from 'antd'
 import StoreContext from '../../context/StoreContext'
+import { useScrollPosition } from '../../utils/hooks'
 
 const { Header } = Layout
 const { Title } = Typography
+
+const StyledHeader = styled(Header)`
+  position: absolute;
+  z-index: 99;
+  width: 100vw;
+  transition: 0.5s background box-shadow;
+  background: ${props =>
+    props.scrollY > 200 ? '#212531' : 'transparent'} !important;
+  position: fixed;
+  box-shadow: ${props =>
+    props.scrollY > 200 ? '-5px 8px 6px -6px #000;' : 'none'} !important;
+`
 
 const CartButton = styled(Link)`
   color: white;
@@ -33,13 +46,14 @@ const Nav = ({ siteTitle }) => {
   const [quantity, setQuantity] = useState(
     countQuantity(checkout ? checkout.lineItems : [])
   )
+  const scrollY = useScrollPosition()
 
   useEffect(() => {
     setQuantity(countQuantity(checkout ? checkout.lineItems : []))
   }, [checkout])
 
   return (
-    <Header>
+    <StyledHeader scrollY={scrollY}>
       <Row type="flex" justify="center">
         <Col span={18}>
           <Link
@@ -47,6 +61,8 @@ const Nav = ({ siteTitle }) => {
             style={{
               color: `white`,
               textDecoration: `none`,
+              fontFamily: 'work sans',
+              textShadow: '5px 5px 15px #000',
             }}
           >
             {siteTitle}
@@ -62,7 +78,7 @@ const Nav = ({ siteTitle }) => {
           </CartButton>
         </Col>
       </Row>
-    </Header>
+    </StyledHeader>
   )
 }
 
