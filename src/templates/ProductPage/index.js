@@ -1,10 +1,16 @@
 import React, { useState, useRef } from 'react'
 import { graphql } from 'gatsby'
+import styled from 'styled-components'
 import ProductForm from '../../components/ProductForm'
 import { Img } from '../../utils/styles'
 import { Carousel, Row, Col, Card, Typography } from 'antd'
-
+import Container from '../../components/Container'
+import Header from '../../components/Header'
 const { Title, Text } = Typography
+
+const ProductPageContainer = styled(Container)`
+  padding-top: 120px;
+`
 
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
@@ -20,34 +26,36 @@ const ProductPage = ({ data }) => {
 
   return (
     <>
-      <Row gutter={16}>
-        <Col span={8}>
-          <Carousel dots="false" ref={carouselRef}>
-            {product.images.map(x => {
-              return (
-                <Img
-                  fluid={x.localFile.childImageSharp.fluid}
-                  key={x.id}
-                  alt={product.title}
-                  color={x.altText}
+      <ProductPageContainer>
+        <Row gutter={16}>
+          <Col span={8}>
+            <Carousel dots="false" ref={carouselRef}>
+              {product.images.map(x => {
+                return (
+                  <Img
+                    fluid={x.localFile.childImageSharp.fluid}
+                    key={x.id}
+                    alt={product.title}
+                    color={x.altText}
+                  />
+                )
+              })}
+            </Carousel>
+          </Col>
+          <Col span={16}>
+            <Card>
+              <Title>{product.title}</Title>
+              <Text>
+                <div
+                  dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
                 />
-              )
-            })}
-          </Carousel>
-        </Col>
-        <Col span={16}>
-          <Card>
-            <Title>{product.title}</Title>
-            <Text>
-              <div
-                dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-              />
-            </Text>
+              </Text>
 
-            <ProductForm product={product} setActiveColor={setActiveColor} />
-          </Card>
-        </Col>
-      </Row>
+              <ProductForm product={product} setActiveColor={setActiveColor} />
+            </Card>
+          </Col>
+        </Row>
+      </ProductPageContainer>
     </>
   )
 }

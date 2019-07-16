@@ -16,11 +16,11 @@ const StyledHeader = styled(Header)`
   z-index: 99;
   width: 100vw;
   transition: 0.5s background box-shadow;
-  background: ${props =>
-    props.scrollY > 200 ? '#212531' : 'transparent'} !important;
+  background: ${({ scrolly, dark }) =>
+    scrolly > 200 || dark ? '#212531' : 'transparent'} !important;
   position: fixed;
-  box-shadow: ${props =>
-    props.scrollY > 200 ? '-5px 8px 6px -6px #000;' : 'none'} !important;
+  box-shadow: ${({ scrolly, dark }) =>
+    scrolly > 200 || dark ? '-5px 8px 6px -6px #000;' : 'none'} !important;
 `
 
 const CartButton = styled(Link)`
@@ -42,7 +42,7 @@ const countQuantity = lineItems => {
   return quantity
 }
 
-const Nav = ({ siteTitle }) => {
+const Nav = ({ siteTitle, dark }) => {
   const context = useContext(StoreContext)
   const { checkout } = context
   const [quantity, setQuantity] = useState(
@@ -55,7 +55,7 @@ const Nav = ({ siteTitle }) => {
   }, [checkout])
 
   return (
-    <StyledHeader scrolly={scrollY}>
+    <StyledHeader scrolly={scrollY} dark={dark}>
       <Container>
         <Row type="flex" justify="center">
           <Col span={18}>

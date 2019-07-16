@@ -5,17 +5,22 @@ import { Layout, Icon } from 'antd'
 const { Footer } = Layout
 
 const StyledFooter = styled(Footer)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: inset 1px 4px 15px -6px #000;
   background: linear-gradient(
     -45deg,
-    #020024,
-    #212351 85%,
-    #eee 85%,
+    #212351,
+    #212351 90%,
+    #ddd 90%,
     #fff,
-    90%,
-    #c48340 90%,
-    #b48340 95%,
-    #343436 95%,
-    #243436 100%
+    93%,
+    #dd9934 93%,
+    #cd9934 96%,
+    #143436 96%,
+    #013400 100%
   ) !important;
   color: white !important;
   height: 400px;
@@ -24,7 +29,7 @@ const StyledFooter = styled(Footer)`
 const SocialList = styled.ul`
   list-style: none;
   display: flex;
-  margin: 0 auto;
+  margin-bottom: 45px;
   justify-self: center;
   flex-direction: row;
   width: 300px;

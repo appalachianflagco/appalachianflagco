@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import styled from 'styled-components'
 import StoreContext, { defaultStoreContext } from '../context/StoreContext'
 import Header from '../components/Header'
 import { GlobalStyle } from '../utils/styles'
@@ -123,7 +122,11 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { children } = this.props
+    const { children, location } = this.props
+
+    const darkNav =
+      location.pathname.includes('cart') ||
+      location.pathname.includes('product')
 
     return (
       <StoreContext.Provider value={this.state.store}>
@@ -140,7 +143,7 @@ class Layout extends React.Component {
           `}
           render={data => (
             <ALayout>
-              <Header siteTitle={data.site.siteMetadata.title} />
+              <Header siteTitle={data.site.siteMetadata.title} dark={darkNav} />
               <Content>{children}</Content>
 
               <Footer></Footer>
