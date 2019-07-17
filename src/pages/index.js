@@ -21,12 +21,7 @@ const IndexPage = () => (
       <IndexPageContainer>
         <StyledTitle level={2}>Shop</StyledTitle>
         <ProductGrid />
-        <Row type="flex" justify="center" align="middle">
-          <Col span={24}>
-            <StyledTitle level={2}>About</StyledTitle>
-          </Col>
-        </Row>
-        <Row gutter={32}>
+        <Row gutter={32} style={{ marginBottom: '45px' }}>
           <Col span={12}>
             <StyledTitle level={3}>Origin</StyledTitle>
             <StyledText>
@@ -61,15 +56,15 @@ const IndexPage = () => (
           </Col>
         </Row>
         <Row>
-          <Col span={24}>
+          <Col span={16} offset={4}>
             <StyledTitle level={3}>Watch</StyledTitle>
             <iframe
               alt="camping flower gap black balsam appalachia"
               width="100%"
-              height="auto"
+              height="400px"
               src="https://www.youtube.com/embed/F9Gbq3hRsJc?&amp;showinfo=0&amp;rel=0"
               frameBorder="0"
-              allowFullScreen=""
+              allowFullScreen={true}
             ></iframe>
           </Col>
         </Row>

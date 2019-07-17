@@ -88,7 +88,7 @@ const MyFooter = props => {
           </SocialLink>
         </SocialItem>
       </SocialList>
-      <Copyright>© {new Date().getFullYear()}</Copyright>
+      <Copyright>© {new Date().getFullYear()} Appalachian Flag Co.</Copyright>
     </StyledFooter>
   )
 }
