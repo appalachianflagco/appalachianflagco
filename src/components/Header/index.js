@@ -6,6 +6,8 @@ import { Layout, Row, Col, Typography, Badge, Icon, Button } from 'antd'
 import StoreContext from '../../context/StoreContext'
 import { useScrollPosition } from '../../utils/hooks'
 
+import Container from '../Container'
+
 const { Header } = Layout
 const { Title } = Typography
 
@@ -14,11 +16,11 @@ const StyledHeader = styled(Header)`
   z-index: 99;
   width: 100vw;
   transition: 0.5s background box-shadow;
-  background: ${props =>
-    props.scrollY > 200 ? '#212531' : 'transparent'} !important;
+  background: ${({ scrolly, dark }) =>
+    scrolly > 200 || dark ? '#212531' : 'transparent'} !important;
   position: fixed;
-  box-shadow: ${props =>
-    props.scrollY > 200 ? '-5px 8px 6px -6px #000;' : 'none'} !important;
+  box-shadow: ${({ scrolly, dark }) =>
+    scrolly > 200 || dark ? '-5px 8px 6px -6px #000;' : 'none'} !important;
 `
 
 const CartButton = styled(Link)`
@@ -40,7 +42,7 @@ const countQuantity = lineItems => {
   return quantity
 }
 
-const Nav = ({ siteTitle }) => {
+const Nav = ({ siteTitle, dark }) => {
   const context = useContext(StoreContext)
   const { checkout } = context
   const [quantity, setQuantity] = useState(
@@ -53,31 +55,33 @@ const Nav = ({ siteTitle }) => {
   }, [checkout])
 
   return (
-    <StyledHeader scrollY={scrollY}>
-      <Row type="flex" justify="center">
-        <Col span={18}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-              fontFamily: 'work sans',
-              textShadow: '5px 5px 15px #000',
-            }}
-          >
-            {siteTitle}
-          </Link>
-        </Col>
-        <Col span={6}>
-          <CartButton to="/cart">
-            <Button>
-              Cart
-              <Icon type="shopping-cart" />
-              {quantity !== 0 && <Badge count={quantity} />}
-            </Button>
-          </CartButton>
-        </Col>
-      </Row>
+    <StyledHeader scrolly={scrollY} dark={dark}>
+      <Container>
+        <Row type="flex" justify="center">
+          <Col span={18}>
+            <Link
+              to="/"
+              style={{
+                color: `white`,
+                textDecoration: `none`,
+                fontFamily: 'work sans',
+                textShadow: '5px 5px 15px #000',
+              }}
+            >
+              {siteTitle}
+            </Link>
+          </Col>
+          <Col span={6}>
+            <CartButton to="/cart">
+              <Button>
+                Cart
+                <Icon type="shopping-cart" />
+                {quantity !== 0 && <Badge count={quantity} />}
+              </Button>
+            </CartButton>
+          </Col>
+        </Row>
+      </Container>
     </StyledHeader>
   )
 }

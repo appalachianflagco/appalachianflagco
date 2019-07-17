@@ -1,9 +1,16 @@
 import React, { useContext } from 'react'
 import { Row, Col, Typography, Button, Icon } from 'antd'
+import styled from 'styled-components'
 
 import StoreContext from '../../../context/StoreContext'
 
 const { Text, Title } = Typography
+
+const RemoveButton = styled(Button)`
+  background-color: #972136 !important;
+  color: white !important;
+  margin-top: 30px;
+`
 
 const LineItem = props => {
   const context = useContext(StoreContext)
@@ -34,7 +41,6 @@ const LineItem = props => {
   const handleRemove = () => {
     context.removeLineItem(context.client, context.checkout.id, line_item.id)
   }
-  console.log(line_item)
 
   return (
     <Row gutter={16}>
@@ -51,9 +57,9 @@ const LineItem = props => {
         <Text>Quantity: </Text>
         <Text>{line_item.quantity}</Text>
         <br />
-        <Button onClick={handleRemove}>
+        <RemoveButton onClick={handleRemove}>
           Remove <Icon type="delete" />
-        </Button>
+        </RemoveButton>
       </Col>
     </Row>
   )

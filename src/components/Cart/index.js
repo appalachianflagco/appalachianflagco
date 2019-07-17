@@ -1,10 +1,16 @@
 import React, { useContext } from 'react'
 import { Row, Col, Typography, Button, Divider, Icon } from 'antd'
+import styled from 'styled-components'
 
 import StoreContext from '../../context/StoreContext'
 import LineItem from './LineItem'
 
 const { Title, Text } = Typography
+
+const CheckoutButton = styled(Button)`
+  background-color: green !important;
+  color: white !important;
+`
 
 const Cart = () => {
   const context = useContext(StoreContext)
@@ -34,9 +40,9 @@ const Cart = () => {
         <Title level={3}>Total</Title>
         <Text>$ {checkout.totalPrice}</Text>
         <Divider></Divider>
-        <Button onClick={handleCheckout}>
+        <CheckoutButton onClick={handleCheckout}>
           Check Out <Icon type="shopping" />
-        </Button>
+        </CheckoutButton>
       </Col>
     </Row>
   )

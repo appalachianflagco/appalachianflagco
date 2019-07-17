@@ -10,12 +10,17 @@ export const GlobalStyle = props => (
       body {
         margin: 0;
         min-height: 100%;
+        font-family: 'prata';
       }
       html {
         font-family: sans-serif;
         overflow-y: scroll;
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
+      }
+
+      .ant-layout {
+        background-color: white;
       }
 
       .cart-thumb {
