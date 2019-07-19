@@ -10,18 +10,7 @@ const StyledFooter = styled(Footer)`
   justify-content: center;
   flex-direction: column;
   box-shadow: inset 1px 4px 15px -6px #000;
-  background: linear-gradient(
-    -45deg,
-    #212351,
-    #212351 90%,
-    #ddd 90%,
-    #fff,
-    93%,
-    #dd9934 93%,
-    #cd9934 96%,
-    #143436 96%,
-    #013400 100%
-  ) !important;
+  background-color: #212351 !important;
   color: white !important;
   height: 400px;
 `
