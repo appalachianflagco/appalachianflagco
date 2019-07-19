@@ -9,7 +9,6 @@ import { useScrollPosition } from '../../utils/hooks'
 import Container from '../Container'
 
 const { Header } = Layout
-const { Title } = Typography
 
 const StyledHeader = styled(Header)`
   position: absolute;
@@ -21,6 +20,23 @@ const StyledHeader = styled(Header)`
   position: fixed;
   box-shadow: ${({ scrolly, dark }) =>
     scrolly > 200 || dark ? '-5px 8px 6px -6px #000;' : 'none'} !important;
+
+  @media (max-width: 768px) {
+    padding: 0 20px !important;
+  }
+`
+
+const CartText = styled.span`
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+`
+
+const HeaderLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  font-family: 'work sans';
+  text-shadow: 5px 5px 15px #000;
 `
 
 const CartButton = styled(Link)`
@@ -30,6 +46,12 @@ const CartButton = styled(Link)`
   justify-content: flex-end;
   height: 100%;
   align-items: center;
+
+  @media (max-width: 768px) {
+    .ant-btn {
+      padding: 0 5px 0 0 !important;
+    }
+  }
 `
 
 const countQuantity = lineItems => {
@@ -59,22 +81,12 @@ const Nav = ({ siteTitle, dark }) => {
       <Container>
         <Row type="flex" justify="center">
           <Col span={18}>
-            <Link
-              to="/"
-              style={{
-                color: `white`,
-                textDecoration: `none`,
-                fontFamily: 'work sans',
-                textShadow: '5px 5px 15px #000',
-              }}
-            >
-              {siteTitle}
-            </Link>
+            <HeaderLink to="/">{siteTitle}</HeaderLink>
           </Col>
           <Col span={6}>
             <CartButton to="/cart">
               <Button>
-                Cart
+                <CartText>Cart</CartText>
                 <Icon type="shopping-cart" />
                 {quantity !== 0 && <Badge count={quantity} />}
               </Button>
