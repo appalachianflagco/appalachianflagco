@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import StoreContext from '../../context/StoreContext'
 import VariantSelector from './VariantSelector'
-import { Button, Input, Typography, Form, Icon } from 'antd'
+import { Button, Input, Typography, Form, Icon, Alert } from 'antd'
 
 const { Title, Text } = Typography
 
@@ -15,6 +15,10 @@ const BuyButton = styled(Button)`
   &:hover {
     border-color: green !important;
   }
+`
+
+const AlertIcon = styled(Icon)`
+  margin-right: 15px;
 `
 
 const ProductForm = props => {
@@ -86,8 +90,8 @@ const ProductForm = props => {
       <Title level={4}>${productVariant.price}</Title>
       <Form
         layout="horizontal"
-        labelCol={{ xs: { span: 24 }, sm: { span: 4 } }}
-        wrapperCol={{ xs: { span: 12 }, sm: { span: 4 } }}
+        labelCol={{ xs: { span: 24 }, md: { span: 4 } }}
+        wrapperCol={{ xs: { span: 24 }, md: { span: 4 } }}
         labelAlign="left"
       >
         {variantSelectors}
@@ -112,10 +116,15 @@ const ProductForm = props => {
           </BuyButton>
         </Form.Item>
         {!available && (
-          <Text type="danger">
-            <Icon type="exclamation-circle" theme="filled" />
-            This Product is out of Stock!
-          </Text>
+          <Alert
+            message={
+              <>
+                <AlertIcon type="exclamation-circle" theme="filled" />
+                This Product is out of Stock!
+              </>
+            }
+            type="error"
+          />
         )}
       </Form>
     </>

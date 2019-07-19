@@ -12,6 +12,17 @@ const ProductPageContainer = styled(Container)`
   padding-top: 120px;
 `
 
+const StyledCarousel = styled(Carousel)`
+  @media (max-width: 768px) {
+    max-height: 500px;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  @media (max-width: 576px) {
+    max-height: 325px;
+  }
+`
+
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
   const carouselRef = useRef(null)
@@ -28,8 +39,8 @@ const ProductPage = ({ data }) => {
     <>
       <ProductPageContainer>
         <Row gutter={16}>
-          <Col span={8}>
-            <Carousel dots="false" ref={carouselRef}>
+          <Col xs={24} md={8}>
+            <StyledCarousel dots="false" ref={carouselRef}>
               {product.images.map(x => {
                 return (
                   <Img
@@ -40,9 +51,9 @@ const ProductPage = ({ data }) => {
                   />
                 )
               })}
-            </Carousel>
+            </StyledCarousel>
           </Col>
-          <Col span={16}>
+          <Col xs={24} md={16}>
             <Card>
               <Title>{product.title}</Title>
               <Text>
