@@ -30,9 +30,11 @@ const Cart = () => {
   })
 
   return (
-    <Row gutter={16}>
-      <Col span={16}>{line_items}</Col>
-      <Col span={8}>
+    <Row gutter={{ md: 16 }}>
+      <Col xs={24} md={16}>
+        {line_items}
+      </Col>
+      <Col xs={24} md={8}>
         <Title level={3}>Subtotal</Title>
         <Text>$ {checkout.subtotalPrice}</Text>
         <Title level={3}>Taxes</Title>

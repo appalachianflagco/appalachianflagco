@@ -12,7 +12,7 @@ const StyledFooter = styled(Footer)`
   box-shadow: inset 1px 4px 15px -6px #000;
   background-color: #212351 !important;
   color: white !important;
-  height: 400px;
+  height: 200px;
 `
 
 const SocialList = styled.ul`
@@ -38,6 +38,10 @@ const Copyright = styled.div`
   width: 25%;
   text-align: center;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const MyFooter = props => {

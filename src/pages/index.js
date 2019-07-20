@@ -13,6 +13,13 @@ const IndexPageContainer = styled.div`
   padding-top: 50px;
 `
 
+const IndexText = styled(StyledText)`
+  @media (max-width: 768px) {
+    display: block;
+    padding: 15px;
+  }
+`
+
 const IndexPage = () => (
   <>
     <SEO title="Home" />
@@ -21,10 +28,10 @@ const IndexPage = () => (
       <IndexPageContainer>
         <StyledTitle level={2}>Shop</StyledTitle>
         <ProductGrid />
-        <Row gutter={32} style={{ marginBottom: '45px' }}>
-          <Col span={12}>
+        <Row gutter={{ md: 32 }} style={{ marginBottom: '45px' }}>
+          <Col xs={24} md={12} style={{ marginBottom: '45px' }}>
             <StyledTitle level={3}>Origin</StyledTitle>
-            <StyledText>
+            <IndexText>
               The Appalachian Flag Company was founded in 2015 by Grayson and
               Gaby Hicks. Through their lifelong love of the Appalachian region,
               they realized that no symbol, no flag, had succeeded in
@@ -36,11 +43,11 @@ const IndexPage = () => (
               colleges that lie within it. So we travelled the spine of
               Appalachia and designed a flag that every Appalachian should be
               proud to fly, the Appalachian Flag.
-            </StyledText>
+            </IndexText>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12}>
             <StyledTitle level={3}>Symbolism</StyledTitle>
-            <StyledText>
+            <IndexText>
               This company is first and foremost about the flag. We’re often
               asked about the story behind its design. We set out to create a
               timeless symbol that tells the story of Appalachia. Here’s the
@@ -52,11 +59,11 @@ const IndexPage = () => (
               the Appalachian people (we still love you, salamanders). Our dream
               is that this flag will reach the home, heart, and porch of every
               Appalachian, uniting us all as one.
-            </StyledText>
+            </IndexText>
           </Col>
         </Row>
         <Row>
-          <Col span={16} offset={4}>
+          <Col xs={24} md={{ span: 16, offset: 4 }}>
             <StyledTitle level={3}>Watch</StyledTitle>
             <iframe
               alt="camping flower gap black balsam appalachia"
