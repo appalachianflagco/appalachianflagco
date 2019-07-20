@@ -44,7 +44,7 @@ const LineItem = props => {
 
   return (
     <Row gutter={16}>
-      <Col span={4}>
+      <Col xs={8} md={4}>
         <div>{variantImage}</div>
       </Col>
       <Col span={16}>

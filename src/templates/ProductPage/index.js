@@ -38,7 +38,7 @@ const ProductPage = ({ data }) => {
   return (
     <>
       <ProductPageContainer>
-        <Row gutter={16}>
+        <Row gutter={{ md: 16 }}>
           <Col xs={24} md={8}>
             <StyledCarousel dots="false" ref={carouselRef}>
               {product.images.map(x => {

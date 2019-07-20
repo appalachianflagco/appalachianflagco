@@ -45,9 +45,9 @@ const ProductGrid = () => {
 
   return (
     <StyledProductGrid>
-      <Row gutter={64}>
+      <Row gutter={{ md: 64 }}>
         {data.allShopifyProduct.edges.map(x => (
-          <Col span={8} key={x.node.id}>
+          <Col xs={24} md={8} key={x.node.id}>
             <div>
               <Link to={`/product/${x.node.handle}/`}>
                 <Img
