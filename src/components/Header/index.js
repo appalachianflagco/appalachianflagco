@@ -1,106 +1,109 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
-import { Flex, Box } from '@rebass/grid/emotion'
-
+import styled from 'styled-components'
+import { Layout, Row, Col, Typography, Badge, Icon, Button } from 'antd'
 import StoreContext from '../../context/StoreContext'
+import { useScrollPosition } from '../../utils/hooks'
 
-const Wrapper = styled.div({
-	background: `rebeccapurple`,
-	marginBottom: `1.45rem`,
-})
+import Container from '../Container'
 
-const CartCounter = styled.span({
-	backgroundColor: `white`,
-	color: `#663399`,
-	borderRadius: `20px`,
-	padding: `0 10px`,
-	fontSize: `1.2rem`,
-	float: `right`,
-	margin: `-10px`,
-	zIndex: 999,
-})
+const { Header } = Layout
 
-const H1 = props => (
-	<h1
-		style={{
-			margin: 0,
-		}}
-	>
-		<Link
-			{...props}
-			style={{
-				color: `white`,
-				textDecoration: `none`,
-			}}
-		>
-			{props.children}
-		</Link>
-	</h1>
-)
+const StyledHeader = styled(Header)`
+  position: absolute;
+  z-index: 99;
+  width: 100vw;
+  transition: 0.5s background box-shadow;
+  background: ${({ scrolly, dark }) =>
+    scrolly > 200 || dark ? '#212531' : 'transparent'} !important;
+  position: fixed;
+  box-shadow: ${({ scrolly, dark }) =>
+    scrolly > 200 || dark ? '-5px 8px 6px -6px #000;' : 'none'} !important;
 
-const Container = props => (
-	<Flex
-		{...props}
-		mx='auto'
-		px={[`1.0875rem`, null, null, 0]}
-		py='1.45rem'
-		css={{
-			margin: `0 auto`,
-			maxWidth: 960,
-		}}
-	/>
-)
+  @media (max-width: 768px) {
+    padding: 0 20px !important;
+  }
+`
+
+const CartText = styled.span`
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+`
+
+const HeaderLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  font-family: 'work sans';
+  text-shadow: 5px 5px 15px #000;
+`
+
+const CartButton = styled(Link)`
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    .ant-btn {
+      padding: 0 5px 0 0 !important;
+    }
+  }
+`
 
 const countQuantity = lineItems => {
-	let quantity = 0
+  let quantity = 0
 
-	lineItems.forEach(item => {
-		quantity = quantity + item.quantity
-	});
+  lineItems.forEach(item => {
+    quantity = quantity + item.quantity
+  })
 
-	return quantity
+  return quantity
 }
 
-const Header = ({ siteTitle }) => {
-	const context = useContext(StoreContext)
-	const { checkout } = context
-	const [quantity, setQuantity] = useState(countQuantity(checkout ? checkout.lineItems : []))
+const Nav = ({ siteTitle, dark }) => {
+  const context = useContext(StoreContext)
+  const { checkout } = context
+  const [quantity, setQuantity] = useState(
+    countQuantity(checkout ? checkout.lineItems : [])
+  )
+  const scrollY = useScrollPosition()
 
-	useEffect(() => {
-		setQuantity(countQuantity(checkout ? checkout.lineItems : []));
-	}, [checkout]);
+  useEffect(() => {
+    setQuantity(countQuantity(checkout ? checkout.lineItems : []))
+  }, [checkout])
 
-	return(
-		<Wrapper>
-			<Container>
-				<Box>
-					<H1 to='/'>
-						{siteTitle}
-					</H1>
-				</Box>
-				<Box ml='auto'>
-					<H1 to='/cart'>
-						{quantity !== 0 &&
-							<CartCounter>
-								{quantity}
-							</CartCounter>
-						}
-						Cart 🛍
-					</H1>
-				</Box>
-			</Container>
-		</Wrapper>
-	)
+  return (
+    <StyledHeader scrolly={scrollY} dark={dark}>
+      <Container>
+        <Row type="flex" justify="center">
+          <Col span={18}>
+            <HeaderLink to="/">{siteTitle}</HeaderLink>
+          </Col>
+          <Col span={6}>
+            <CartButton to="/cart">
+              <Button>
+                <CartText>Cart</CartText>
+                <Icon type="shopping-cart" />
+                {quantity !== 0 && <Badge count={quantity} />}
+              </Button>
+            </CartButton>
+          </Col>
+        </Row>
+      </Container>
+    </StyledHeader>
+  )
 }
 
-Header.propTypes = {
-	siteTitle: PropTypes.string,
+Nav.propTypes = {
+  siteTitle: PropTypes.string,
 }
 
-Header.defaultProps = {
-	siteTitle: ``,
+Nav.defaultProps = {
+  siteTitle: ``,
 }
 
-export default Header
+export default Nav

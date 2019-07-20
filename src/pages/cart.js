@@ -1,13 +1,22 @@
 import React from 'react'
+import { Typography } from 'antd'
+import styled from 'styled-components'
 
 import Cart from '../components/Cart'
-import { Container } from '../utils/styles'
+import Container from '../components/Container'
 
+const CartPageContainer = styled(Container)`
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 120px;
+`
+
+const { Title } = Typography
 const CartPage = () => (
-  <Container>
-    <h1>Cart</h1>
+  <CartPageContainer>
+    <Title>Cart</Title>
     <Cart />
-  </Container>
+  </CartPageContainer>
 )
 
 export default CartPage

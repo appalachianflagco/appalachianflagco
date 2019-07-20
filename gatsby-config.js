@@ -3,7 +3,7 @@ require('dotenv').config({
 })
 module.exports = {
   siteMetadata: {
-    title: `The Appalachian Flag Co. | A Flag for Appalachia`,
+    title: `The Appalachian Flag Co.`,
     description: `The Appalachian Flag Company. Bringing you the definitive symbol for Appalachia since 2015.`,
     author: `The Appalachian Flag Co.`,
     url: 'http://appalachianflagco.com',
@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -41,6 +42,16 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `prata`,
+          `work sans\:300,400,700`, // you can also specify font weights and styles
+        ],
+        display: 'swap',
       },
     },
     {

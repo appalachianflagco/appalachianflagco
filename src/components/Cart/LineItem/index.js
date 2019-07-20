@@ -1,7 +1,16 @@
 import React, { useContext } from 'react'
-import { Flex, Box } from '@rebass/grid/emotion'
+import { Row, Col, Typography, Button, Icon } from 'antd'
+import styled from 'styled-components'
 
 import StoreContext from '../../../context/StoreContext'
+
+const { Text, Title } = Typography
+
+const RemoveButton = styled(Button)`
+  background-color: #972136 !important;
+  color: white !important;
+  margin-top: 30px;
+`
 
 const LineItem = props => {
   const context = useContext(StoreContext)
@@ -11,14 +20,22 @@ const LineItem = props => {
     <img
       src={line_item.variant.image.src}
       alt={`${line_item.title} product shot`}
-      height="60px"
+      className="cart-thumb"
     />
   ) : null
 
   const selectedOptions = line_item.variant.selectedOptions ? (
-    <>{line_item.variant.selectedOptions.map(option => {
-      return `${option.name}: ${option.value} `
-    })}</>
+    <>
+      {line_item.variant.selectedOptions.map(option => {
+        return (
+          <>
+            <Text>{option.name}: </Text>
+            <Text>{option.value}</Text>
+            <br />
+          </>
+        )
+      })}
+    </>
   ) : null
 
   const handleRemove = () => {
@@ -26,33 +43,25 @@ const LineItem = props => {
   }
 
   return (
-    <Flex
-      py={2}
-      flexWrap='wrap'
-      justifyContent='space-between'
-      alignItems='center'
-    >
-      <Box>
-        {variantImage}
-      </Box>
-      <Box>
-        <p>
-          {line_item.title}
-          {`  `}
-          {line_item.variant.title === ! 'Default Title' ? line_item.variant.title : ''}
-        </p>
-      </Box>
-      <Box>
-        {selectedOptions}
-      </Box>
-      <Box>
-        {line_item.quantity}
-        {console.log(line_item)}
-      </Box>
-      <Box>
-        <button onClick={handleRemove}>Remove</button>
-      </Box>
-    </Flex>
+    <Row gutter={16}>
+      <Col xs={8} md={4}>
+        <div>{variantImage}</div>
+      </Col>
+      <Col span={16}>
+        <Title level={4}>{line_item.title}</Title>
+
+        <div>
+          {line_item.variant.title !== 'Default Title' && selectedOptions}
+        </div>
+
+        <Text>Quantity: </Text>
+        <Text>{line_item.quantity}</Text>
+        <br />
+        <RemoveButton onClick={handleRemove}>
+          Remove <Icon type="delete" />
+        </RemoveButton>
+      </Col>
+    </Row>
   )
 }
 

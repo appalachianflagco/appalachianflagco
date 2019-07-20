@@ -1,11 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql, Link } from 'gatsby'
+import styled from 'styled-components'
+import { GlobalStyle } from '../utils/styles'
+import { Layout as ALayout, notification, Button, Icon } from 'antd'
 
 import StoreContext, { defaultStoreContext } from '../context/StoreContext'
 import Header from '../components/Header'
-import { GlobalStyle } from '../utils/styles'
+import Footer from '../components/Footer'
+import 'antd/dist/antd.css'
 
+const { Content } = ALayout
+
+const CartButton = styled(Link)`
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-end;
+`
+
+const openNotification = lineItemsToUpdate => {
+  notification['success']({
+    duration: 2.5,
+    message: 'Added to cart!',
+    description: (
+      <div>
+        This has been successfully added to your cart.{' '}
+        <CartButton to="/cart">
+          <Button style={{ backgroundColor: 'green', color: 'white' }}>
+            Checkout Now!
+            <Icon type="shopping-cart" />
+          </Button>
+        </CartButton>
+      </div>
+    ),
+    placement: 'bottomRight',
+  })
+}
 class Layout extends React.Component {
   state = {
     store: {
@@ -40,6 +71,7 @@ class Layout extends React.Component {
               },
             }))
           })
+          .then(openNotification(lineItemsToUpdate))
       },
       removeLineItem: (client, checkoutID, lineItemID) => {
         return client.checkout
@@ -118,11 +150,15 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { children } = this.props
+    const { children, location } = this.props
+
+    const darkNav =
+      location.pathname.includes('cart') ||
+      location.pathname.includes('product')
 
     return (
       <StoreContext.Provider value={this.state.store}>
-        <GlobalStyle/>
+        <GlobalStyle />
         <StaticQuery
           query={graphql`
             query SiteTitleQuery {
@@ -134,24 +170,12 @@ class Layout extends React.Component {
             }
           `}
           render={data => (
-            <>
-              <Header siteTitle={data.site.siteMetadata.title} />
-              <div
-                style={{
-                  margin: `0 auto`,
-                  maxWidth: 960,
-                  padding: `0px 1.0875rem 1.45rem`,
-                  paddingTop: 0,
-                }}
-              >
-                {children}
-                <footer>
-                  © {new Date().getFullYear()}, Built with
-                  {` `}
-                  <a href="https://www.gatsbyjs.org">Gatsby</a>
-                </footer>
-              </div>
-            </>
+            <ALayout>
+              <Header siteTitle={data.site.siteMetadata.title} dark={darkNav} />
+              <Content>{children}</Content>
+
+              <Footer></Footer>
+            </ALayout>
           )}
         />
       </StoreContext.Provider>

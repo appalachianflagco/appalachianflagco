@@ -1,18 +1,35 @@
 import React, { useState, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
-
+import styled from 'styled-components'
 import StoreContext from '../../context/StoreContext'
 import VariantSelector from './VariantSelector'
+import { Button, Input, Typography, Form, Icon, Alert } from 'antd'
+
+const { Title, Text } = Typography
+
+const BuyButton = styled(Button)`
+  background-color: green !important;
+  color: white !important;
+
+  &:focus,
+  &:hover {
+    border-color: green !important;
+  }
+`
+
+const AlertIcon = styled(Icon)`
+  margin-right: 15px;
+`
 
 const ProductForm = props => {
   const [quantity, setQuantity] = useState(1)
   const [variant, setVariant] = useState(props.product.variants[0])
   const context = useContext(StoreContext)
-  
+
   const hasVariants = props.product.variants.length > 1
   const productVariant =
-  context.client.product.helpers.variantForOptions(props.product, variant) ||
-  variant
+    context.client.product.helpers.variantForOptions(props.product, variant) ||
+    variant
   const [available, setAvailable] = useState(productVariant.availableForSale)
 
   useEffect(() => {
@@ -28,7 +45,7 @@ const ProductForm = props => {
   }, [productVariant])
 
   const checkAvailability = productId => {
-    context.client.product.fetch(productId).then((product) => {
+    context.client.product.fetch(productId).then(product => {
       // this checks the currently selected variant for availability
       const result = product.variants.filter(
         variant => variant.id === productVariant.shopifyId
@@ -36,17 +53,18 @@ const ProductForm = props => {
       setAvailable(result[0].available)
     })
   }
- 
+
   const handleQuantityChange = event => {
     setQuantity(event.target.value)
   }
 
-  const handleOptionChange = event => {
-    const { target } = event
+  const handleOptionChange = (name, value) => {
     setVariant(prevState => ({
       ...prevState,
-      [target.name]: target.value,
+      [name]: value,
     }))
+
+    props.setActiveColor(value)
   }
 
   const handleAddToCart = () => {
@@ -56,34 +74,59 @@ const ProductForm = props => {
   const variantSelectors = hasVariants
     ? props.product.options.map(option => {
         return (
-          <VariantSelector
-            onChange={handleOptionChange}
-            key={option.id.toString()}
-            option={option}
-          />
+          <Form.Item label={option.name}>
+            <VariantSelector
+              onChange={handleOptionChange}
+              key={option.id.toString()}
+              option={option}
+            />
+          </Form.Item>
         )
       })
     : null
 
   return (
     <>
-      <h3>${productVariant.price}</h3>
-      {variantSelectors}
-      <label htmlFor="quantity">Quantity </label>
-      <input
-        type="number"
-        id="quantity"
-        name="quantity"
-        min="1"
-        step="1"
-        onChange={handleQuantityChange}
-        value={quantity}
-      />
-      <br/>
-      <button type="submit" disabled={!available} onClick={handleAddToCart}>
-        Add to Cart
-      </button>
-      {!available && <p>This Product is out of Stock!</p>}
+      <Title level={4}>${productVariant.price}</Title>
+      <Form
+        layout="horizontal"
+        labelCol={{ xs: { span: 24 }, md: { span: 4 } }}
+        wrapperCol={{ xs: { span: 24 }, md: { span: 4 } }}
+        labelAlign="left"
+      >
+        {variantSelectors}
+        <Form.Item label="Quantity">
+          <Input
+            type="number"
+            id="quantity"
+            name="quantity"
+            min="1"
+            step="1"
+            onChange={handleQuantityChange}
+            value={quantity}
+          />
+        </Form.Item>
+        <Form.Item>
+          <BuyButton
+            htmlType="submit"
+            disabled={!available}
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </BuyButton>
+        </Form.Item>
+        {!available && (
+          <Alert
+            message={
+              <>
+                <AlertIcon type="exclamation-circle" theme="filled" />
+                This Product is out of Stock!
+              </>
+            }
+            type="error"
+          />
+        )}
+      </Form>
     </>
   )
 }
