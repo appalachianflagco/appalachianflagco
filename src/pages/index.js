@@ -7,6 +7,7 @@ import ProductGrid from '../components/ProductGrid'
 import StyledTitle from '../components/StyledTitle'
 import StyledText from '../components/StyledText'
 import Hero from '../components/Hero'
+import AnimatedHero from '../components/AnimatedHero'
 import Container from '../components/Container'
 
 const IndexPageContainer = styled.div`
@@ -23,7 +24,8 @@ const IndexText = styled(StyledText)`
 const IndexPage = () => (
   <>
     <SEO title="Home" />
-    <Hero></Hero>
+    {/* <Hero></Hero> */}
+    <AnimatedHero></AnimatedHero>
     <Container>
       <IndexPageContainer>
         <StyledTitle level={2}>Shop</StyledTitle>
