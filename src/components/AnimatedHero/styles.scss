@@ -1,0 +1,12 @@
+.WebGLDemo {
+  position: relative;
+  padding: 0;
+  width: 100vw;
+  height: 100vw;
+
+  &__scene {
+      position: relative;
+      width: 100%;
+      height: 100%;
+  }
+}

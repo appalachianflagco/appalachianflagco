@@ -9,7 +9,6 @@ import StyledText from '../components/StyledText'
 import Hero from '../components/Hero'
 import AnimatedHero from '../components/AnimatedHero'
 import Container from '../components/Container'
-
 const IndexPageContainer = styled.div`
   padding-top: 50px;
 `
@@ -33,6 +32,7 @@ const IndexPage = () => (
         <Row gutter={{ md: 32 }} style={{ marginBottom: '45px' }}>
           <Col xs={24} md={12} style={{ marginBottom: '45px' }}>
             <StyledTitle level={3}>Origin</StyledTitle>
+
             <IndexText>
               The Appalachian Flag Company was founded in 2015 by Grayson and
               Gaby Hicks. Through their lifelong love of the Appalachian region,
