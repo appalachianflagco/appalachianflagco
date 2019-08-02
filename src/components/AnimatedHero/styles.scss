@@ -2,7 +2,9 @@
   position: relative;
   padding: 0;
   width: 100vw;
-  height: 100vw;
+  height: auto;
+  max-height: 100vh;
+  overflow: hidden;
 
   &__scene {
       position: relative;

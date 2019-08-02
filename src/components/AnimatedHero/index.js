@@ -3,8 +3,8 @@ import { Canvas, useThree } from 'react-three-fiber'
 import { useSpring, a } from 'react-spring/three'
 import * as THREE from 'three'
 
-import image from '../../../static/hero.png'
-import imageMap from '../../../static/hero-map.png'
+import image from '../../../static/land.png'
+import imageMap from '../../../static/land-map.png'
 
 import './styles.scss'
 
@@ -95,7 +95,7 @@ const MainImage = ({ mouse }) => {
   }, [invalidate])
 
   return (
-    <mesh scale={scale} position={new THREE.Vector3(0, 1.5, 0)}>
+    <mesh scale={scale} position={new THREE.Vector3(0, 1.25, 0)}>
       <planeBufferGeometry attach="geometry" args={planeGeomArgs} />
       <a.shaderMaterial
         attach="material"
