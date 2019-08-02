@@ -3,8 +3,8 @@ import { Canvas, useThree } from 'react-three-fiber'
 import { useSpring, a } from 'react-spring/three'
 import * as THREE from 'three'
 
-import image from '../../../static/land.png'
-import imageMap from '../../../static/land-map.png'
+import image from '../../../static/hero.png'
+import imageMap from '../../../static/hero-map.png'
 
 import './styles.scss'
 
